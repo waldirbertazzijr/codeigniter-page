@@ -96,5 +96,5 @@ This will create the meta tags.
 ---
 # Changelog
 * Version 0.1a
-** First commit to github.
-** Added a simple documentation.
+	* First commit to github.
+	* Added a simple documentation.
