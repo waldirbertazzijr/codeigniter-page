@@ -1,0 +1,14 @@
+/**
+ * Orion Project - And advanced, feature-rich PHP framework based on Codeigniter.
+ * Primary System Stylesheet
+ *
+ * Author: 
+ *
+ */
+
+/* Creates very sexy font for AMP characters and sexy texts */
+.amp {
+	font-family: baskerville, palatino, palatino linotype, book antiqua, georgia, times, times new roman, serif;
+	font-style: italic;
+	font-weight: normal;
+}
