@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="application/controllers"/>
+	<buildpathentry kind="src" path="application/libraries"/>
+	<buildpathentry kind="src" path="application/templates/default"/>
+	<buildpathentry kind="src" path="application/views"/>
+	<buildpathentry kind="src" path="assets/weblibraries/bootstrap"/>
+	<buildpathentry kind="src" path="assets/weblibraries/jquery"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
