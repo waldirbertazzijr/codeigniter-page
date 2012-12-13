@@ -1,16 +1,4 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * Orion Framework
- *
- * @package		Orion
- * @author		Waldir Bertazzi Junior
- * @copyright	Copyright (c) Waldir Bertazzi Junior.
- * @license		GNU
- * @link		http://waldir.org
- * @since		Version 1.0
- * @filesource
- */
-
 // ------------------------------------------------------------------------
 
 /**
@@ -20,7 +8,7 @@
  * asset library will be assigned to.
  *
  */
-class CI_Weblibrary {
+class Weblibrary {
 	
 	var $_data;
 	var $_code;
@@ -30,7 +18,7 @@ class CI_Weblibrary {
 	 *
 	 * Calls the initialize() function
 	 */
-	function CI_Weblibrary()
+	function Weblibrary()
 	{	
 		log_message('debug', "Weblibrary Class Initialized");
 	}
@@ -130,7 +118,3 @@ class CI_Weblibrary {
 		return $return;
 	}
 }
-// END _Controller class
-
-/* End of file Controller.php */
-/* Location: ./system/libraries/Library.php */

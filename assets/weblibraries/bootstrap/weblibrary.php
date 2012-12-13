@@ -19,7 +19,7 @@ $library = array(
 
 // this is the custom jquery
 
-class bootstrap extends CI_Weblibrary {
+class bootstrap extends Weblibrary {
 	function __construct(){
 	}
 }

@@ -18,7 +18,7 @@ $library = array(
 
 // this is the custom jquery
 
-class jquery extends CI_Weblibrary {
+class jquery extends Weblibrary {
 	function __construct(){
 	}
 }
