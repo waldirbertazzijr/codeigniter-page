@@ -3,18 +3,17 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
 <?php echo $head_info;?>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<?php echo $metas; ?>
+		<title><?php echo $title; ?></title>
 	
-	<title><?php echo $title; ?></title>
-	
-	<link rel="shortcut icon" href="<?php echo $this->page->assets_url('images'); ?>orion_favicon.ico">
-	
-	<?php echo $metas; ?>
-	<?php echo $css; ?>
-	<?php echo $js; ?>
-	<?php echo $custom; ?>
-</head>
-<body>
+		<?php echo $css; ?>
+		<?php echo $js; ?>
+	</head>
+	<body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">Você está usando um navegador <strong>antigo</strong>. Por favor <a href="http://browsehappy.com/">atualize seu navegador</a> para melhorar sua experiência.</p>
+        <![endif]-->

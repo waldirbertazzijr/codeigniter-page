@@ -1,7 +1,4 @@
-
-	<!-- Footer JS -->
-	<?php echo $footer_js; ?>
-	<!-- END Footer JS -->
-</body>
+		<?php echo $js; ?>
+	</body>
 </html>
-<!-- Orion default template END - Total running time: {elapsed_time} -->
+<!-- Total running time: {elapsed_time} -->

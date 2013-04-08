@@ -6,10 +6,7 @@ class Welcome extends CI_Controller {
 	{
 		// Loading the Orion page's Library
 		$this->load->library('page');
-		
-		// load jquery and bootstrap
-		$this->page->load(array('jquery','bootstrap'));
-		
+				
 		// this is how to add a css file to your page header
 		$this->page->css('style');
 		
