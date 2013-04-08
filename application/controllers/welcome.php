@@ -6,15 +6,18 @@ class Welcome extends CI_Controller {
 	{
 		// Loading the Orion page's Library
 		$this->load->library('page');
-				
-		// this is how to add a css file to your page header
-		$this->page->css('style');
+		
+		// this is how to add a css file to your page
+		$this->page->css('bootstrap.min.css');
+		
+		// this is how to add js files after the page body
+		$this->page->js(array('jquery-1.9.1.min.js', 'bootstrap.min.js'), PAGE_HEAD);
 		
 		// this will load welcome_message view
 		$this->page->view('welcome_message');
 		
 		// generates the page. The argument is the page title.
-		$this->page->generate('Welcome to Orion Project');
+		$this->page->generate('Welcome to Codeigniter-page');
 	}
 }
 

@@ -1,6 +1,5 @@
 <div id="container" class="hero-unit" style="margin: 50px;">
 	<div class="page-header">
-		<h1>Welcome to Codeigniter's Page Library!</h1>
 	</div>
 	
 	<div class="tabbable">

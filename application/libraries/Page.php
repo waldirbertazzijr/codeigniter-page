@@ -15,13 +15,16 @@ define("PAGE_BODY", 1);
 */
 class Page {
 
-	// Private
-	private $js						= array();
+	// Private stuff
+	
+	// Tags
+	private $js						= array(PAGE_HEAD=>array(), PAGE_BODY=>array());
 	private $css					= array();
-	private $metas					= array();
-	private $view_list				= array();
 	private $php_vars				= array();
-	private $custom_tags			= "";
+	private $metas					= array();
+	
+	// Views
+	private $view_list				= array();
 	private $template;
 	private $CI;
 
@@ -88,7 +91,7 @@ class Page {
 			foreach($filename as $file){
 				// Calls recursively this function for each file
 				// on the received array.
-				$this->js($file);
+				$this->js($file, $position);
 			}
 		} else {
 			if($file = $this->_has_extension($filename)){
@@ -105,7 +108,6 @@ class Page {
 	*
 	* @access	public
 	* @param	string - filename located in assets/css
-	* @param	int - position to put the file. by default, css is on page head
 	* @return	bool
 	*/
 	function css($filename){
@@ -224,7 +226,9 @@ class Page {
 		$this->CI->benchmark->mark('benchmark_start');
 
 		// Turn on profiler if necessary
-		$this->CI->output->enable_profiler($this->profiler);
+		if ($this->profiler) {
+			$this->CI->output->enable_profiler($this->profiler);
+		}
 
 		$return = "";
 
@@ -275,11 +279,13 @@ class Page {
 	* @param	position int - defines the css to return
 	* @return	string
 	*/
-	private function _compile_css($position){
+	private function _compile_css(){
 		$compiled_css = "";
-		foreach($this->css[$position] as $css_file){
-			$compiled_css .= "\t<link rel=\"stylesheet\" href=\"".$this->assets_url('css')."{$css_file}.css\" />\n";
+		foreach($this->css as $css_file){
+			$compiled_css .= "\t<link rel=\"stylesheet\" href=\"".$this->assets_url('css')."/{$css_file}.css\" />\n";
 		}
+		
+		if ($compiled_css == "") return "";
 
 		return "<!-- START Compiled CSS -->\n".$compiled_css."\t<!-- END Compiled CSS -->\n";
 	}
@@ -293,9 +299,10 @@ class Page {
 	*/
 	private function _compile_js($position){
 		$compiled_js = "";
-		foreach($this->js as $js_file){
-			$compiled_js .= "\t<script type=\"text/javascript\" src=\"".$this->assets_url('javascript')."{$js_file}.js\"></script>\n";
+		foreach($this->js[$position] as $js_file){
+			$compiled_js .= "\t<script type=\"text/javascript\" src=\"".$this->assets_url('js')."/{$js_file}.js\"></script>\n";
 		}
+		if ($compiled_js == "") return "";
 		
 		return "<!-- START Compiled JS -->\n".$compiled_js."\t<!-- END Compiled JS -->\n";
 	}
@@ -312,6 +319,8 @@ class Page {
 		foreach($this->metas as $meta){
 			$compiled_metas .= "\t".'<meta name="'.$meta['name'].'" content="'.$meta['content'].'">'."\n";
 		}
+		if ($compiled_metas == "") return "";
+		
 		return "<!-- START Compiled META -->\n".$compiled_metas."\t<!-- END Compiled META -->\n";
 	}
 	
