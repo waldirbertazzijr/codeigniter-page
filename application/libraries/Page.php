@@ -32,7 +32,7 @@ class Page {
 	public $return					= false;
 	public $profiler				= false;
 	public $js_utils				= false;
-	public $head_info				= "<!--\n ▽ Orion Framework\n\n'A culture disconnected from wild nature becomes insane.'\n\t\t- Toby Hemenway -->\n\n";
+	public $head_info				= "<!-- 'A culture disconnected from wild nature becomes insane.'\n\t\t- Toby Hemenway -->\n";
 
 
 	/**
@@ -188,13 +188,13 @@ class Page {
 	function messages(){
 		$return = "\n";
 		if ($this->CI->session->flashdata('error_message')) {
-			$return .= '<div class="alert alert-error"><span>';
+			$return .= '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 			$return .= $this->CI->session->flashdata('error_message');
-			$return .= '</span></div>';
+			$return .= '</div>';
 		} else if ($this->CI->session->flashdata('success_message')) {
-			$return .= '<div class="alert alert-success"><span>';
+			$return .= '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 			$return .= $this->CI->session->flashdata('success_message');
-			$return .= '</span></div>';
+			$return .= '</div>';
 		}
 
 		return $return;
@@ -211,6 +211,18 @@ class Page {
 	*/
 	function add_php_var($key, $value){
 		$this->php_vars[$key] = $value;
+	}
+	
+	/**
+	 * Add custom code to page head script tag
+	 *
+	 * @access	public
+     * @param	string
+	 * @return	bool
+	 */
+	function code($custom_code){
+		$this->custom_js[] = $custom_code;
+		return true;
 	}
 
 	/**
@@ -301,6 +313,9 @@ class Page {
 		$compiled_js = "";
 		foreach($this->js[$position] as $js_file){
 			$compiled_js .= "\t<script type=\"text/javascript\" src=\"".$this->assets_url('js')."/{$js_file}.js\"></script>\n";
+		}
+		foreach($this->custom_js as $js_code){
+			$compiled_js .= "\t<script type=\"text/javascript\">\n\t\t{$js_code}\n\t</script>\n";
 		}
 		if ($compiled_js == "") return "";
 		
