@@ -214,18 +214,6 @@ class Page {
 	}
 	
 	/**
-	 * Add custom code to page head script tag
-	 *
-	 * @access	public
-     * @param	string
-	 * @return	bool
-	 */
-	function code($custom_code){
-		$this->custom_js[] = $custom_code;
-		return true;
-	}
-
-	/**
 	* Generate the page using helper functions
 	* and show the page with the page title.
 	*
@@ -313,9 +301,6 @@ class Page {
 		$compiled_js = "";
 		foreach($this->js[$position] as $js_file){
 			$compiled_js .= "\t<script type=\"text/javascript\" src=\"".$this->assets_url('js')."/{$js_file}.js\"></script>\n";
-		}
-		foreach($this->custom_js as $js_code){
-			$compiled_js .= "\t<script type=\"text/javascript\">\n\t\t{$js_code}\n\t</script>\n";
 		}
 		if ($compiled_js == "") return "";
 		
