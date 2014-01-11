@@ -244,7 +244,7 @@ class Page {
 		}
 
 		$return = "";
-
+		
 		if ($this->js_utils) {
 			// Passes site_url, base_url and php_vars to JS. Very useful for javascript frameworks.
 			$this->code("// Javascript utils\n\t\tvar site_url = '".site_url()."';\n\t\tvar base_url = '".base_url()."';\n\t\tvar phpvars = ".json_encode($this->php_vars).";");
@@ -314,6 +314,9 @@ class Page {
 		$compiled_js = "";
 		foreach($this->js[$position] as $js_file){
 			$compiled_js .= "\t<script type=\"text/javascript\" src=\"".$this->assets_url('js')."/{$js_file}.js\"></script>\n";
+		}
+		foreach($this->custom_js as $js_code){
+			$compiled_js .= "\t<script type=\"text/javascript\">\n\t\t{$js_code}\n\t</script>\n";
 		}
 		if ($compiled_js == "") return "";
 		
