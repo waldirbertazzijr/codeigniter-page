@@ -22,6 +22,7 @@ class Page {
 	private $css					= array();
 	private $php_vars				= array();
 	private $metas					= array();
+	private $custom_js;
 	
 	// Views
 	private $view_list				= array();
@@ -31,7 +32,7 @@ class Page {
 	// Public
 	public $return					= false;
 	public $profiler				= false;
-	public $js_utils				= false;
+	public $js_utils				= true;
 	public $head_info				= "<!-- 'A culture disconnected from wild nature becomes insane.'\n\t\t- Toby Hemenway -->\n";
 
 
@@ -211,6 +212,18 @@ class Page {
 	*/
 	function add_php_var($key, $value){
 		$this->php_vars[$key] = $value;
+	}
+	
+	/**
+	* Add custom code to page head script tag
+	*
+	* @access  public
+	* @param  string
+	* @return  bool
+	*/
+	function code($custom_code){
+		$this->custom_js[] = $custom_code;
+		return true;
 	}
 	
 	/**
