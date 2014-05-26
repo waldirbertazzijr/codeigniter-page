@@ -315,10 +315,10 @@ class Page {
 		foreach($this->js[$position] as $js_file){
 			$compiled_js .= "\t<script type=\"text/javascript\" src=\"".$this->assets_url('js')."/{$js_file}.js\"></script>\n";
 		}
-		if ($position == PAGE_HEAD) {
-			foreach($this->custom_js as $js_code){
-				$compiled_js .= "\t<script type=\"text/javascript\">\n\t\t{$js_code}\n\t</script>\n";
-			}
+		if (sizeof($this->custom_js) != 0 && $position == PAGE_HEAD) {
+			$compiled_js .= "\t<script type=\"text/javascript\">";
+			foreach ($this->custom_js as $custom_js) if ($custom_js != '') $compiled_js .= $custom_js;
+			$compiled_js .= "\t</script>";
 		}
 		if ($compiled_js == "") return "";
 		
