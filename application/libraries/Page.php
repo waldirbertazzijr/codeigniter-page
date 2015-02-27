@@ -30,7 +30,6 @@ class Page {
 	private $CI;
 
 	// Public
-	public $return					= false;
 	public $profiler				= false;
 	public $js_utils				= true;
 	public $head_info				= "<!-- 'A culture disconnected from wild nature becomes insane.'\n\t\t- Toby Hemenway -->\n";
@@ -242,8 +241,6 @@ class Page {
 		if ($this->profiler) {
 			$this->CI->output->enable_profiler($this->profiler);
 		}
-
-		$return = "";
 		
 		if ($this->js_utils) {
 			// Passes site_url, base_url and php_vars to JS. Very useful for javascript frameworks.
@@ -251,37 +248,31 @@ class Page {
 		}
 
 		// Template header
-		$return .= $this->CI->load->view(
-			"../templates/{$this->template}/header",
+		$this->CI->load->view(
+		"../templates/{$this->template}/header",
 		array(
-			'head_info'		=> $this->head_info,
-			'title'			=> $title,
-			'metas'			=> $this->_compile_metas(),
-			'css'			=> $this->_compile_css(PAGE_HEAD),
-			'js'			=> $this->_compile_js(PAGE_HEAD),
-		),
-		$this->return);
-
+			'head_info'			=> $this->head_info,
+			'title'				=> $title,
+			'metas'				=> $this->_compile_metas(),
+			'css'				=> $this->_compile_css(PAGE_HEAD),
+			'js'				=> $this->_compile_js(PAGE_HEAD),
+		));
+		
 		// Foreach saved view in the view_list array load it
 		foreach($this->view_list as $view){
-			$return .= $this->CI->load->view($view['name'], $view['data'], $this->return);
+			$this->CI->load->view($view['name'], $view['data']);
 		}
 
 		// Footer
-		$return .= $this->CI->load->view(
+		$this->CI->load->view(
 			"../templates/{$this->template}/footer",
-		array(
-			'js'			=> $this->_compile_js(PAGE_BODY)
-		),
-		$this->return);
+			array(
+				'js'			=> $this->_compile_js(PAGE_BODY)
+			)
+		);
 
 		// Okay dood!
 		$this->CI->benchmark->mark('benchmark_end');
-
-		// Return?
-		if($this->return){
-			return $return;
-		}
 	}
 
 	/**
