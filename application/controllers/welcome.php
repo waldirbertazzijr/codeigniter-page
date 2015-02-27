@@ -4,7 +4,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		// Loading the Orion page's Library
+		// Loading the lib
 		$this->load->library('page');
 		
 		// this is how to add a css file to your page
