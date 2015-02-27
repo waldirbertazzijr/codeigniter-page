@@ -1,4 +1,4 @@
-# Codeigniter Page Library V. 0.3a
+# Codeigniter Page Library V. 1.0.0
 This library is the perfect not-overcomplicated way to manage your app assets like CSS, Javascript, images and more. Designed to be fast and simple.
 
 ## Installation and Concepts
